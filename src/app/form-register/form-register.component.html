@@ -1,0 +1,456 @@
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white">
+                        <h2>NON AVL COMPANY PROFILE SUBMISSION</h2>
+                    </div>
+                    <form [formGroup]="vendorRegister" (ngSubmit)="onSubmit()">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-5">
+                                    <h3 class="mb-0">แบบฟอร์มคู่ค้ารายใหม่</h3>
+                                    <span>New Supplier/Contractor Qualification Form</span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">อีเมล์ / Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" formControlName="email">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">หมายเลขโทรศัพท์ / Telephone <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" formControlName="telephone">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">โทรสาร / Fax No <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" formControlName="fax">
+                                </div>
+                                <div class="col-md-12 mb-5">
+                                    <p>
+                                        ข้อมูลด้านล่างจำเป็นต้องใช้ในการปรับปรุงฐานข้อมูลผู้ขาย/ผู้รับเหมาในระบบคอมพิวเตอร์
+                                        ซึ่งจะเกี่ยวข้องกับการเปิดใบสั่งซื่อ/จ้าง หรือการดำเนินการ <br>
+                                        The following information is required to modify information about you in our ERP system. You cannot
+                                        be set up to receive orders or payments from BIG until this information is provided. After finished,
+                                        please return to BIG Buyer as soon as possible.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <h4 class="text-primary">1. ข้อมูลทั่วไป (Genaral Information)</h4>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">ชื่อบริษัท / Company Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="genaralCompanyName">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">ปีที่เปิดดำเนินการ / Opened since <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="genaralCompanySince">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ที่อยู่ / Mailing Address <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="genaralCompanyAddress">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">โทรศัพท์ / Tel <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" formControlName="genaralCompanyTelephone">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">โทรสาร / Fax <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" formControlName="genaralCompanyFax">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr class="table-dark">
+                                                <th>Name</th>
+                                                <th>Telephone</th>
+                                                <th>Email</th>
+                                                <th>Position</th>
+                                                <th><button class="btn btn-success btn-sm" type="button" (click)="addGroupUser()"><i
+                                                            class="fa fa-plus"></i></button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody formArrayName="generalGroupUser">
+                                            <tr *ngFor="let data of generalGroupUser.controls; let i = index" [formGroupName]="i">
+                                                <td>
+                                                    <input type="text" class="form-control" formControlName="cName">
+                                                </td>
+                                                <td>
+                                                    <input type="tel" class="form-control" formControlName="cTelephone">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" formControlName="cEmail">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" formControlName="cPosition">
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger btn-sm" type="button" (click)="removeGroupUser(i)"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="">เว็บไซต์หรืออีเมล์ / Website or E-mail address <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="generalCompanyWebsite">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <p for="">ประเภทของธุรกิจ <br> Type of Business <span class="text-danger">*</span></p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio1" value="Goods"
+                                            formControlName="generalCompanyTypeBusiness">
+                                        <label class="form-check-label" for="inlineRadio1">จัดหาสินค้า / Goods</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio2" value="Service"
+                                            formControlName="generalCompanyTypeBusiness">
+                                        <label class="form-check-label" for="inlineRadio2">ให้บริการงานจ้าง / Service</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="inlineRadio3" value="Both"
+                                            formControlName="generalCompanyTypeBusiness">
+                                        <label class="form-check-label" for="inlineRadio3">ทั้งสองประเภท / Both</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <p for="">สินค้าที่ท่านเป็นผู้ผลิต หรือตัวแทนจำหน่าย <br> Products you manufacture or being distributor
+                                        <span class="text-danger">*</span></p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="product1" value="1"
+                                            formControlName="generalManufactureProduct">
+                                        <label class="form-check-label" for="product1">ผู้ผลิต</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="product2" value="2"
+                                            formControlName="generalManufactureProduct">
+                                        <label class="form-check-label" for="product2">ตัวแทนจำหน่าย</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="product3" value="3"
+                                            formControlName="generalManufactureProduct">
+                                        <label class="form-check-label" for="product3">อื่นๆ</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="displayProduct">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered" id="table-item">
+                                        <thead>
+                                            <tr class="table-dark">
+                                                <th>กลุ่มสินค้า / Group</th>
+                                                <th>รายละเอียดสินค้า / Description</th>
+                                                <th>ยี่ห้อ / Brand</th>
+                                                <th class="text-center">
+                                                    <button class="btn btn-success btn-sm" type="button" (click)="addGroupProduct()"><i
+                                                            class="fa fa-plus"></i></button>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody formArrayName="generalGroupProduct">
+                                            <tr *ngFor="let data of generalGroupProduct.controls; let i = index" [formGroupName]="i">
+                                                <td>
+                                                    <select name="" id="" class="form-select" formControlName="ptype">
+                                                        <option value="Machine">เครื่องจักร / Machine</option>
+                                                        <option value="Mechanic">เครื่องกล / Mechanic</option>
+                                                        <option value="Electrical">ไฟฟ้า / Electrical</option>
+                                                        <option value="Instrumentation">เครื่องมือวัด / Instrumentation</option>
+                                                        <option value="Safety Equipment">อุปกรณ์ความปลอดภัย / Safety Equipment</option>
+                                                        <option value="Others">อื่นๆ / Others</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <textarea name="" id="" cols="30" rows="5" formControlName="pDescription" class="form-control"></textarea>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" formControlName="pBrand">
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-danger btn-sm" type="button" (click)="removeGroupProduct(i)"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="displayService">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered" id="table-item">
+                                        <thead>
+                                            <tr class="table-dark">
+                                                <th>ประเภท</th>
+                                                <th>กลุ่มบริการ</th>
+                                                <th>รายละเอียด</th>
+                                                <th>รายละเอียด / Description</th>
+                                                <th class="text-center">
+                                                    <button class="btn btn-success btn-sm" type="button" (click)="addGroupService()"><i class="fa fa-plus"></i></button>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody formArrayName="generalGroupService">
+                                            <tr *ngFor="let data of generalGroupService.controls; let i = index" [formGroupName]="i">
+                                                <td>
+                                                    <select name="" id="" class="form-select" formControlName="sCat" (change)="getSubcat($event)">
+                                                        <option *ngFor="let data of optionService" [value]="data.cat_id">{{data.cat_name}}</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="" id="" class="form-select" formControlName="sSubcat" (change)="getServiceLists($event)">
+                                                        <option *ngFor="let data of optionServiceSub" [value]="data.subcat_id">{{data.subcat_name}}</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="" id="" class="form-select" formControlName="sService">
+                                                        <option *ngFor="let data of optionServiceLists" [value]="data.service_id">{{data.service_name}}</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <textarea name="" id="" cols="30" rows="5" class="form-control" formControlName="sDescription"></textarea>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-danger btn-sm" type="button" (click)="removeGroupService(i)"><i
+                                                            class="fa fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="">Catalog</label>
+                                    <input type="file" class="form-control" formControlName="genaralFileCatalog">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Profile Company</label>
+                                    <input type="file" class="form-control" formControlName="genaralFileProfileCompany">
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-md-4 mb-3">
+                                    <label for="">จำนวนพนักงาน ที่สำนักงาน <br> Number of Employee Office <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="generalEmployeeCount">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">พนักงานประจำ <br> Employee <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="generalEmployeePosition">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">พนักงานชั่วคราว <br> Temporary Labour <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="generalEmployeeTemporary">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">จำนวนพนักงาน โรงงาน สาขา สถานที่ก่อสร้าง <br> Number of Employee Plant Branch Site <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="generalEmployeeCount2">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">พนักงานประจำ <br> Employee <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="generalEmployeePosition2">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">พนักงานชั่วคราว <br> Temporary Labour <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="generalEmployeeTemporary2">
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-md-12 mb-3">
+                                    <h4 class="text-primary">2. ข้อมูลด้านการเงินและธุรกิจ (Financial and Business Information)</h4>
+                                </div>
+                                <div class="col-md-12 mb-5">
+                                    <p for="">ท่านยินดีให้ข้อมูลเกี่ยวกับข้อมูลทางการเงินที่ได้มีการรับรองแล้ว / Are you willing to provide
+                                        an audited income statement and balance sheet? <span class="text-danger">*</span></p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="g1" value="yes" formControlName="financialAccept">
+                                        <label class="form-check-label" for="g1">ใช่ / Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="g2" value="no" formControlName="financialAccept">
+                                        <label class="form-check-label" for="g2">ไม่ใช่ / No</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <p class="mb-0">รายได้ต่อปี ย้อนหลัง 2 ปี / Annual Income Volume for past 2 years</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">ปีบัญชี / Year <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="financialYear">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">รายได้สุทธิ / Revenue <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="financialRevenue">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">ปีบัญชี / Year <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="financialYear2">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">รายได้สุทธิ / Revenue <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" formControlName="financialRevenue2">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <p class="mb-0">บัญชีธนาคารที่ใช้อ้างอิง และ ยังใช้บริการอยู่ / Reference and active Bank account</p>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ธนาคาร / Bank <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialBank">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">สาขา / Branch <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialBankBranch">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ประเภทบัญชี / Account type <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialBankAccount">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ธนาคาร / Bank <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialBank2">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">สาขา / Branch <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialBankBranch2">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ประเภทบัญชี / Account type <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialBankAccount2">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <p class="mb-0">รายชื่อลูกค้าที่สามารถอ้างอิงได้ / Reference major customers</p>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ชื่อบริษัท / Company name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialCompany">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ผู้ติดต่อ / Contact person <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialCompanyContact">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">โทรศัพท์ / Telephone No <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialCompanyTelephone">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ชื่อบริษัท / Company name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialCompany2">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">ผู้ติดต่อ / Contact person <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialCompanyContact2">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="">โทรศัพท์ / Telephone No <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="financialCompanyTelephone2">
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-md-12 mb-3">
+                                    <h4 class="text-primary">3. ข้อมูลด้านระบบบริหาร ความปลอดภัยและสิ่งแวดล้อม (Quality & Safety Information)</h4>
+                                </div>
+                                <div class="col-md-12 mb-5">
+                                    <p for="">บริษัทฯ ได้รับการรับรองตามมาตรฐาน ISO9001 หรือไม่ / Are your company certified to ISO9001?</p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="a1" value="yes" formControlName="safetyIso9001">
+                                        <label class="form-check-label" for="a1">ใช่ / Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="a2" value="no" formControlName="safetyIso9001">
+                                        <label class="form-check-label" for="a2">ไม่ใช่ / No</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-5">
+                                    <p for="">บริษัทฯ ได้รับการรับรองตามมาตรฐาน ISO14001 หรือไม่ / Are your company certified to ISO14001?
+                                    </p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="b1" value="yes" formControlName="safetyIso14001">
+                                        <label class="form-check-label" for="b1">ใช่ / Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="b2" value="no" formControlName="safetyIso14001">
+                                        <label class="form-check-label" for="b2">ไม่ใช่ / No</label>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-12 mb-5">
+                                    <p for="">บริษัทฯ ได้รับการรับรองตามมาตรฐาน ISO14001  หรือไม่  / Are your company certified to ISO14001? </p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions7" id="c1" value="option1">
+                                        <label class="form-check-label" for="c1">ใช่ / Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions7" id="c2" value="option2">
+                                        <label class="form-check-label" for="c2">ไม่ใช่ / No</label>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-12 mb-5">
+                                    <p for="">บริษัทฯ ได้รับการรับรองตามมาตรฐาน GI (Green Industry) หรือไม่ / Are your company certified to
+                                        GI ? </p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="d1" value="yes" formControlName="safetyGI">
+                                        <label class="form-check-label" for="d1">ใช่ / Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="d2" value="no" formControlName="safetyGI">
+                                        <label class="form-check-label" for="d2">ไม่ใช่ / No</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-5">
+                                    <p for="">เป็นองค์กรที่มีหน่วยงานความปลอดภัย / Do you have Environment, Heath & Safety section? </p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="e1" value="yes" formControlName="safetySafety">
+                                        <label class="form-check-label" for="e1">ใช่ / Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="e2" value="no" formControlName="safetySafety">
+                                        <label class="form-check-label" for="e2">ไม่ใช่ / No</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="">สถิติความปลอดภัย / Safety Record (Year)</label>
+                                    <input type="number" class="form-control" formControlName="safetyRecord">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="">จำนวนครั้งที่ต้องหยุดงาน</label>
+                                    <input type="number" class="form-control" formControlName="safetyHoliday">
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <h6>แนบเอกสาร</h6>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">ภพ 20 <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">หนังสือรับรองบริษัท <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">สำเนาหน้า Book bank <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">แบบตอบรับการโอนเงิน <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+                                    <button *ngIf="signIn" type="submit" class="btn btn-warning float-end" routerLink="/form-register-step2">Next Step <i class="fa fa-angle-double-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,41 @@
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card border-0 shadow">
+                    <form [formGroup]="vendorRegister" (ngSubmit)="onSubmit()">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6>แนบเอกสาร</h6>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">ภพ 20 <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">หนังสือรับรองบริษัท <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">สำเนาหน้า Book bank <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="">แบบตอบรับการโอนเงิน <span class="text-danger">*</span></label>
+                                    <input type="file" name="" id="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-dark" routerLink="/form-register"><i class="fa fa-angle-double-left"></i> Back</button>
+                                    <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

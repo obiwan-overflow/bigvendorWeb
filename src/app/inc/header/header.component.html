@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" routerLink="index"><h1 class="fw-bold text-primary">Vendor</h1><span>Management System</span></a><br>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="ms-auto">
+          <button type="button" class="btn btn-light text-uppercase fw-bold me-3" routerLink="form-register">non avl company profile submission</button>
+          <button *ngIf="!signIn" type="button" class="btn btn-light text-uppercase fw-bold" routerLink="sign-in">Sign In</button>
+          <button *ngIf="signIn" type="button" class="btn btn-light text-uppercase fw-bold" (click)="signOut()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+</nav>
