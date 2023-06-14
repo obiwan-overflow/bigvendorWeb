@@ -165,67 +165,80 @@ export class FormRegisterComponent {
       console.log(err);
     });
     
-    // let status = this.sessionStorageService.retrieve('signIn');
-    // if(status){
-    //   this.signIn = true;
-    //   this.vendorRegister = new FormGroup({
-    //     email: new FormControl('test@gmail.com'),
-    //     telephone: new FormControl('0987654321'),
-    //     fax: new FormControl('0987654321'),
-    //     genaralCompanyName: new FormControl('test'),
-    //     genaralCompanySince: new FormControl('2022'),
-    //     genaralCompanyAddress: new FormControl('122/11'),
-    //     genaralCompanyTelephone: new FormControl('0987654321'),
-    //     genaralCompanyFax: new FormControl('0987654321'),
-    //     generalGroupUser: new FormArray([
-    //       new FormGroup({
-    //         cName: new FormControl('test1'),
-    //         cTelephone: new FormControl('0987654321'),
-    //         cEmail: new FormControl('test1@gmail.com'),
-    //         cPosition: new FormControl('test'),
-    //       }),
-    //     ]),
-    //     generalCompanyWebsite: new FormControl('dddd.com'),
-    //     generalCompanyTypeBusiness: new FormControl('Service'),
-    //     generalManufactureProduct: new FormControl('2'),
-    //     generalGroupProduct: new FormArray([
-    //       new FormGroup({
-    //         ptype: new FormControl('Electrical'),
-    //         pDescription: new FormControl('sssss'),
-    //         pBrand: new FormControl('ssss'),
-    //       }),
-    //     ]),
-    //     generalEmployeeCount: new FormControl('22'),
-    //     generalEmployeePosition: new FormControl('2'),
-    //     generalEmployeeTemporary: new FormControl('20'),
-    //     generalEmployeeCount2: new FormControl('33'),
-    //     generalEmployeePosition2: new FormControl('3'),
-    //     generalEmployeeTemporary2: new FormControl('30'),
-    //     financialAccept: new FormControl('yes'),
-    //     financialYear: new FormControl('2021'),
-    //     financialRevenue: new FormControl('2000000'),
-    //     financialYear2: new FormControl('2022'),
-    //     financialRevenue2: new FormControl('1000000'),
-    //     financialBank: new FormControl('sss'),
-    //     financialBankBranch: new FormControl('sss'),
-    //     financialBankAccount: new FormControl('sss'),
-    //     financialBank2: new FormControl('ss'),
-    //     financialBankBranch2: new FormControl('ss'),
-    //     financialBankAccount2: new FormControl('ss'),
-    //     financialCompany: new FormControl('ss'),
-    //     financialCompanyContact: new FormControl('ss'),
-    //     financialCompanyTelephone: new FormControl('0987654321'),
-    //     financialCompany2: new FormControl('asss'),
-    //     financialCompanyContact2: new FormControl('kkk'),
-    //     financialCompanyTelephone2: new FormControl('0987654321'),
-    //     safetyIso9001: new FormControl('no'),
-    //     safetyIso14001: new FormControl('no'),
-    //     safetyGI: new FormControl('yes'),
-    //     safetySafety: new FormControl('yes'),
-    //     safetyRecord: new FormControl('200'),
-    //     safetyHoliday: new FormControl('2'),
-    //   });
-    // }
+    let status = this.sessionStorageService.retrieve('userDetail');
+    if(status){
+      this.signIn = true;
+      this.api.getdata('vendorRegister/'+status.id_vendor_register).subscribe(res=>{
+        console.log(res);
+        this.vendorRegister.patchValue({
+          email: res.email,
+          telephone: res.telephone,
+          fax: res.fax,
+          genaralCompanyName: res.genaralCompanyName,
+          genaralCompanySince: res.genaralCompanySince,
+          genaralCompanyAddress: res.genaralCompanyAddress,
+          genaralCompanyTelephone: res.genaralCompanyTelephone,
+          genaralCompanyFax: res.genaralCompanyFax,
+          // generalGroupUser: new FormArray([
+          //   new FormGroup({
+          //     cName: res.cName,
+          //     cTelephone: res.cTelephone,
+          //     cEmail: res.cEmail,
+          //     cPosition: res.cPosition,
+          //   }),
+          // ]),
+          generalCompanyWebsite: res.generalCompanyWebsite,
+          generalCompanyTypeBusiness: res.generalCompanyTypeBusiness,
+          generalManufactureProduct: res.generalManufactureProduct,
+          // generalGroupProduct: new FormArray([
+          //   new FormGroup({
+          //     ptype: res.ptype,
+          //     pDescription: res.pDescription,
+          //     pBrand: res.pBrand,
+          //   }),
+          // ]),
+          // generalGroupService: new FormArray([
+          //   new FormGroup({
+          //     sCat: res.sCat,
+          //     sSubcat: res.sSubcat,
+          //     sService: res.sService,
+          //     sDescription: res.sDescription,
+          //   }),
+          // ]),
+          genaralFileCatalog: res.genaralFileCatalog,
+          genaralFileProfileCompany: res.genaralFileProfileCompany,
+          generalEmployeeCount: res.generalEmployeeCount,
+          generalEmployeePosition: res.generalEmployeePosition,
+          generalEmployeeTemporary: res.generalEmployeeTemporary,
+          generalEmployeeCount2: res.generalEmployeeCount2,
+          generalEmployeePosition2: res.generalEmployeePosition2,
+          generalEmployeeTemporary2: res.generalEmployeeTemporary2,
+          financialAccept: res.financialAccept,
+          financialYear: res.financialYear,
+          financialRevenue: res.financialRevenue,
+          financialYear2: res.financialYear2,
+          financialRevenue2: res.financialRevenue2,
+          financialBank: res.financialBank,
+          financialBankBranch: res.financialBankBranch,
+          financialBankAccount: res.financialBankAccount,
+          financialBank2: res.financialBank2,
+          financialBankBranch2: res.financialBankBranch2,
+          financialBankAccount2: res.financialBankAccount2,
+          financialCompany: res.financialCompany,
+          financialCompanyContact: res.financialCompanyContact,
+          financialCompanyTelephone: res.financialCompanyTelephone,
+          financialCompany2: res.financialCompany2,
+          financialCompanyContact2: res.financialCompanyContact2,
+          financialCompanyTelephone2: res.financialCompanyTelephone2,
+          safetyIso9001: res.safetyIso9001,
+          safetyIso14001: res.safetyIso14001,
+          safetyGI: res.safetyGI,
+          safetySafety: res.safetySafety,
+          safetyRecord: res.safetyRecord,
+          safetyHoliday: res.safetyHoliday,
+        });
+      });
+    }
   }
 
   // service

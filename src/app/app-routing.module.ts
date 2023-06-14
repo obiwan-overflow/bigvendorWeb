@@ -7,6 +7,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { FormRegisterStep2Component } from './form-register-step2/form-register-step2.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { FormRegisterSuccessComponent } from './form-register-success/form-register-success.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
-import { FormBuilder, FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormControlName, FormGroup, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RestApiService } from '../rest-api.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,23 +12,13 @@ import { RestApiService } from '../rest-api.service';
 })
 export class SignInComponent {
   signIn:FormGroup;
-  constructor(private sessionStorageService: SessionStorageService,public router:Router,private api:RestApiService){
+  constructor(private sessionStorageService: SessionStorageService,public router:Router,private api:RestApiService,private authService: AuthService){
     this.signIn = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl('')
+      username: new FormControl('',Validators.required),
+      password: new FormControl('',Validators.required)
     });
   }
   async onSubmit(){
-    let body = new URLSearchParams();
-    body.set('username',this.signIn.value.username);
-    body.set('password',this.signIn.value.password);
-    this.api.postdata('vendorSignin',body).subscribe((res)=>{
-      console.log(res);
-    },err=>{
-      console.log(err);
-    });
-    // let data = 'signIn';
-    // await this.sessionStorageService.store('signIn',data);
-    // await this.router.navigateByUrl('index');
+    this.authService.login(this.signIn.value.username,this.signIn.value.password);
   }
 }

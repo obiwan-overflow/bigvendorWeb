@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { SessionStorageService } from 'ngx-webstorage';
+import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,19 +9,30 @@ import { SessionStorageService } from 'ngx-webstorage';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  signIn:boolean;
-  constructor(private sessionStorageService: SessionStorageService){
-    this.signIn = false;
+  isSignIn:boolean = false;
+  isLoggedIn: boolean = false;
+  username:any;
+  constructor(private sessionStorageService: SessionStorageService,private authService: AuthService,public router:Router){
+    if(this.isLoggedIn){
+      let data = this.sessionStorageService.retrieve('userdetail');
+      this.username = data.username;
+    }
+    // if(username){
+    //   this.isSignIn = true;
+    // }
+    // this.isLoggedIn = this.authService.isLoggedIn();
+    // console.log(this.isLoggedIn);
   }
   ngOnInit(){
-    let status = this.sessionStorageService.retrieve('signIn');
-    if(status){
-      this.signIn = true;
-    }
-    console.log(this.signIn);
+    // this.isLoggedIn = this.authService.isLoggedIn();
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
   }
   async signOut(){
-    await this.sessionStorageService.clear('signIn');
-    await location.reload();
+    this.sessionStorageService.clear('permission');
+    this.sessionStorageService.clear('userdetail');
+    this.authService.logout();
+    this.router.navigateByUrl('sign-in');
   }
 }

@@ -11,25 +11,36 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="">ภพ 20 <span class="text-danger">*</span></label>
-                                    <input type="file" name="" id="" class="form-control">
+                                    <input type="file" name="" id="" class="form-control" formControlName="file_20" accept="image/*,application/pdf" (change)="handleFile1($event)">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="">หนังสือรับรองบริษัท <span class="text-danger">*</span></label>
-                                    <input type="file" name="" id="" class="form-control">
+                                    <input type="file" name="" id="" class="form-control" formControlName="file_company_certificate" accept="image/*,application/pdf" (change)="handleFile2($event)">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="">สำเนาหน้า Book bank <span class="text-danger">*</span></label>
-                                    <input type="file" name="" id="" class="form-control">
+                                    <input type="file" name="" id="" class="form-control" formControlName="file_bookbank" accept="image/*,application/pdf" (change)="handleFile3($event)">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="">แบบตอบรับการโอนเงิน <span class="text-danger">*</span></label>
-                                    <input type="file" name="" id="" class="form-control">
+                                    <input type="file" name="" id="" class="form-control" formControlName="file_transfer" accept="image/*,application/pdf" (change)="handleFile4($event)">
                                 </div>
                             </div>
+                            <!-- <div class="row mb-3">
+                                <div class="col-md-12">
+                                  <label for="" class="form-label">Upload file</label>
+                                </div>
+                                <div class="col-md-4">
+                                  <input class="form-control" type="file" (change)="handleImageUploadTravelling($event)" accept="image/*,application/pdf">
+                                </div>
+                                <div class="col-md-8">
+                                  <button class="btn btn-primary" (click)="uploadImageTravelling()"><i class="fas fa-file"></i> Upload</button>
+                                </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-dark" routerLink="/form-register"><i class="fa fa-angle-double-left"></i> Back</button>
-                                    <button type="submit" class="btn btn-primary float-end"><i class="fa fa-save"></i> Submit</button>
+                                    <button type="submit" class="btn btn-primary float-end" [disabled]="!vendorRegister.valid"><i class="fa fa-save"></i> Submit</button>
                                 </div>
                             </div>
                         </div>

@@ -7,8 +7,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="ms-auto">
           <button type="button" class="btn btn-light text-uppercase fw-bold me-3" routerLink="form-register">non avl company profile submission</button>
-          <button *ngIf="!signIn" type="button" class="btn btn-light text-uppercase fw-bold" routerLink="sign-in">Sign In</button>
-          <button *ngIf="signIn" type="button" class="btn btn-light text-uppercase fw-bold" (click)="signOut()">Sign Out</button>
+          <button *ngIf="!isLoggedIn" type="button" class="btn btn-light text-uppercase fw-bold" routerLink="sign-in">Sign In</button>
+          <!-- <button *ngIf="isLoggedIn" class="btn btn-light text-uppercase fw-bold">{{username}}</button> -->
+          <button *ngIf="isLoggedIn" type="button" class="btn btn-light text-uppercase fw-bold" (click)="signOut()">Sign Out</button>
         </div>
       </div>
     </div>
